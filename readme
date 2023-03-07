@@ -1,0 +1,67 @@
+
+# WORDLE
+
+Para realizar las configuraciones iniciales del proyecto
+
+
+ejecutar el sript  npm run setup
+para instalar las dependencias y
+realizar la migracion de la base de datos.
+
+
+los endpoint estan protegidos con exepcion el de login y
+el de creacion de usuario.
+
+-----------------------------------------------------
+
+
+por defecto escucha el puerto http://localhost:5000/
+
+ejemplo http://localhost:5000/users
+
+GET /ranking/users    
+devuelve los 10 mejores jugadores
+
+GET /ranking/words    
+devuelve las 10 palabras mas adivinadas
+
+POST /user  
+creaar un nuevo usuario  
+parameters {
+    "username": "name",
+    "password": "password"
+}
+
+
+POST /auth/login
+authentificacion     
+parameters {
+    "username": "name",
+    "password": "password"
+}
+
+
+
+-------------socket io------------------
+
+host http://localhost:5000
+
+event: new_game_socket
+inicia un nuevo juego e obtiene una nueva palabra sin repetirse
+
+event: verify_word_socket
+verifica si la palabra ingresada por el usuario es correcta
+
+event: status_game
+
+devuelve un json con las conincidencias de las palabras
+
+{
+    correct: 5,
+    coincidencias: [
+        {
+            letter: 'C',
+            value: 1
+        }
+    ]
+}
